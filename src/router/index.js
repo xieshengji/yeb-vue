@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from "@/views/Login";
 import Home from "@/views/Home";
+import Lock from "@/views/Lock";
 import FriendChat from "@/views/chat/FriendChat";
 import AdminInfo from "@/views/AdminInfo";
 
@@ -23,6 +24,12 @@ const routes = [
     path: '/',
     name: 'Login',
     component: Login,
+    hidden: true
+  },
+  {
+    path: '/lock',
+    name: '解锁',
+    component: Lock,
     hidden: true
   },
   {

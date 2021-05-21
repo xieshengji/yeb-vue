@@ -7,6 +7,43 @@ import {Notification} from 'element-ui';
 
 Vue.use(Vuex);
 
+const state = {
+    user: {
+        lockPassword: sessionStorage.getItem('lockPassword') || '',
+        isLock: sessionStorage.getItem('isLock') || false
+    }
+}
+const getters = {
+    user: state => state.user
+}
+const mutations = {
+    SET_LOCK: (state) => {
+        state.user.isLock = true
+        sessionStorage.setItem('isLock', state.user.isLock)
+    },
+    SET_LOCK_PASSWORD: (state, lockPassword) => {
+        state.user.lockPassword = lockPassword
+        sessionStorage.setItem('lockPassword', state.user.lockPassword)
+    },
+    CLEAR_LOCK: (state) => {
+        state.user.isLock = false
+        state.user.lockPassword = ''
+        sessionStorage.removeItem('isLock')
+        sessionStorage.removeItem('lockPassword')
+    }
+}
+const actions = {
+    setLock: ({commit}) => {
+        commit('SET_LOCK')
+    },
+    setLockPassword: ({commit}, lockPassword) => {
+        commit('SET_LOCK_PASSWORD', lockPassword)
+    },
+    clearLock: ({commit}) => {
+        commit('CLEAR_LOCK')
+    }
+}
+
 const now = new Date();
 
 const store = new Vuex.Store({
@@ -18,14 +55,32 @@ const store = new Vuex.Store({
         currentSession: null,
         filterKey:'',
         stomp: null,
-        idDot: {}
+        idDot: {},
+        user: {
+            lockPassword: JSON.parse(window.sessionStorage.getItem('lockPassword')) || '',
+            isLock: JSON.parse(window.sessionStorage.getItem('isLock')) || false
+        }
     },
 
     getters:{
-
+        user: state => state.user
     },
 
     mutations: {
+        SET_LOCK: (state) => {
+            state.user.isLock = true
+            sessionStorage.setItem('isLock', state.user.isLock)
+        },
+        SET_LOCK_PASSWORD: (state, lockPassword) => {
+            state.user.lockPassword = lockPassword
+            sessionStorage.setItem('lockPassword', state.user.lockPassword)
+        },
+        CLEAR_LOCK: (state) => {
+            state.user.isLock = false
+            state.user.lockPassword = ''
+            sessionStorage.removeItem('isLock')
+            sessionStorage.removeItem('lockPassword')
+        },
         INIT_ADMIN(state, admin) {
             state.currentAdmin = admin;
         },
@@ -61,6 +116,15 @@ const store = new Vuex.Store({
     },
 
     actions: {
+        setLock: ({commit}) => {
+            commit('SET_LOCK')
+        },
+        setLockPassword: ({commit}, lockPassword) => {
+            commit('SET_LOCK_PASSWORD', lockPassword)
+        },
+        clearLock: ({commit}) => {
+            commit('CLEAR_LOCK')
+        },
         connect(context) {
           context.state.stomp = Stomp.over(new SockJS('/ws/ep'));
           let token = window.sessionStorage.getItem('tokenStr');
