@@ -1,5 +1,5 @@
 import {getRequest} from "@/utils/api";
-
+//封装菜单请求工具类
 export const initMenu = (router, store) => {
     if (store.state.routes.length > 0) {
         return;

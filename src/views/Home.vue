@@ -16,7 +16,7 @@
     </el-dialog>
     <el-container>
     <el-header class="homeHeader">
-      <div class="title">云E办</div>
+      <div class="title">云办公系统</div>
       <div>
         <el-button @click="dialogVisible = true" icon="el-icon-lock" type="text" size="normal" style="color: black;margin-right: 5px"></el-button>
         <el-button @click="goChat" icon="el-icon-bell" type="text" size="normal" style="color: black;margin-right: 8px"></el-button>
@@ -54,7 +54,7 @@
           <el-breadcrumb-item>{{this.$router.currentRoute.name}}</el-breadcrumb-item>
         </el-breadcrumb>
         <div class="homeWelcome" v-if="this.$router.currentRoute.path == '/home'">
-          欢迎来到云E办系统！
+          欢迎来到云办公系统！
         </div>
         <router-view class="homeRouterView"/>
       </el-main>

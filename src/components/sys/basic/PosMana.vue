@@ -128,7 +128,7 @@
           this.multipleSelection.forEach(item => {
             ids += 'ids=' + item.id + '&';
           })
-          this.deleteRequest('/system/basic/pos/'+ids).then(resp => {
+          this.deleteRequest('/system/basic/position/'+ids).then(resp => {
             if (resp) {
               this.initPositions();
             }
@@ -144,7 +144,7 @@
         this.multipleSelection = val;
       },
       doUpdate() {
-        this.putRequest('/system/basic/pos/', this.updatePos).then(resp => {
+        this.putRequest('/system/basic/position/', this.updatePos).then(resp => {
           if (resp) {
             this.initPositions();
             this.dialogVisible = false;
@@ -153,7 +153,7 @@
       },
       addPosition() {
         if (this.pos.name) {
-          this.postRequest('/system/basic/pos/', this.pos).then(resp => {
+          this.postRequest('/system/basic/position/', this.pos).then(resp => {
             if (resp) {
               this.initPositions();
               this.pos.name = '';
@@ -174,7 +174,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.deleteRequest('/system/basic/pos/'+data.id).then(resp => {
+          this.deleteRequest('/system/basic/position/'+data.id).then(resp => {
             if (resp) {
               this.initPositions();
             }
@@ -187,7 +187,7 @@
         });
       },
       initPositions() {
-        this.getRequest('/system/basic/pos/').then(resp => {
+        this.getRequest('/system/basic/position/').then(resp => {
           if (resp) {
             this.positions = resp;
           }

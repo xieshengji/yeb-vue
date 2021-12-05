@@ -79,7 +79,7 @@ export default {
     },
     doAddRole() {
       if (this.role.name && this.role.nameZh) {
-        this.postRequest('/system/basic/permiss/role', this.role).then(resp => {
+        this.postRequest('/system/basic/permiss/', this.role).then(resp => {
           if (resp) {
             this.initRoles();
             this.role.name = '';

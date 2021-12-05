@@ -38,7 +38,6 @@ router.beforeEach((to, from, next) => {
       //判断用户信息是否存在
       return getRequest('/admin/info').then(resp => {
         if (resp) {
-          console.log(resp);
           //存入用户信息
           window.sessionStorage.setItem('user', JSON.stringify(resp));
           store.commit('INIT_ADMIN', resp);

@@ -799,7 +799,7 @@ export default {
         this.nations = JSON.parse(window.sessionStorage.getItem('nations'));
       }
       if (!window.sessionStorage.getItem('politicsstatus')) {
-        this.getRequest('/employee/basic/politicsstatus').then(resp => {
+        this.getRequest('/employee/basic/politicsStatus').then(resp => {
           if (resp) {
             this.politicsstatus = resp;
             window.sessionStorage.setItem('politicsstatus', JSON.stringify(resp));
